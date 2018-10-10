@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+
+<head>
+
+	<title>CSS-3 Backgrounds</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+	<style type="text/css">
+		
+		
+		#main{
+		background-image:url(toad.jpeg);
+		background-repeat:no-repeat;
+		background-position:bottom right;
+		/*
+		-webkit-background-size:100%;
+		-moz-background-size:100%;
+		background-size:100%;
+		*/
+		}
+        
+        #navlist
+            {
+            padding: 3px 0;
+            margin-left: 0;
+            border-bottom: 1px solid #778;
+            
+            }
+
+            #navlist li
+            {
+            list-style: none;
+            margin: 1em;
+            }
+
+            #navlist li a
+            {
+            padding: 3px 0.5em;
+            margin-left: 3px;
+            border: 1px solid #778;
+            background: #DDE;
+            text-decoration: none;
+            }
+
+            #navlist li a:link { color: #448; }
+            #navlist li a:visited { color: #667; }
+
+            #navlist li a:hover
+            {
+            color: #000;
+            background: #AAE;
+            border-color: #227;
+            }
+
+            #navlist li a#current
+            {
+            background: white;
+            }
+		#menu {
+			display:inline-block;
+			padding:10px;
+			height:1.5em;
+			overflow:hidden;
+			transition:1s;
+		}
+		
+		#menu:hover {
+			height:12em;
+		}
+        
+        .navBar{
+            font: bold 12px Verdana, sans-serif;
+            background-color: floralwhite;
+            height: 1.5em;
+            width: 200px;
+            overflow: hidden;
+        }
+	</style>
+
+</head>
+
+
+
+<body>
+
+
+<div id="menu" class="navBar">
+Tab Lists
+    <ul id="navlist">
+            <li><a id="current" href="page1.html">Tab List 5</a></li>
+            <li><a href="page2.html">Tab List 3</a></li>
+            <li><a href="page3.html">Tab List 2</a></li>
+            <li><a href="page4.html">Tab List 1</a></li>
+            </ul>
+</div>
+<div id="container">
+    <div id="header">
+        <h1 id="banner">This is a nicely transitioned list</h1>
+    </div>
+</div>
+</body>
+</html>
