@@ -1,5 +1,11 @@
 
-nav{
+@font-face{
+    font-family: Rubik-Regular;
+    src: url("/media/Rubik-Regular.ttf");
+}
+@font-face{
+    font-family: Rubik-Light;
+    src: url("/media/Rubik-Light.ttf");
 }
 
 ul {
@@ -12,11 +18,15 @@ ul {
     height: 100%; 
     position: fixed; 
     overflow: auto;
+    font-family: Rubik-Light;
+    font-size: 150%
     
 }
 
 li{
     text-decoration: none;
+        transition: width 2s;
+    -webkit-transition: width 2s;
 }
 
 li a {
@@ -29,17 +39,24 @@ li a {
 
 li a:hover {
     background-color: #59C3C3;
+    width: 300px;
 }
 
-#current-page {
+.current-page {
+    color: #000000;
     background-color: #FFAF87;
-    color: black;
     
 }
+
 .container{
-    margin-left: 35%; 
+    margin-left: 30%; 
+    
+    font-family: Rubik-Regular;
+    
 }
 
 .container h1{
     padding-top: 10%;
+    font-size: 300%;
+    font-family: Rubik-Light;
 }
