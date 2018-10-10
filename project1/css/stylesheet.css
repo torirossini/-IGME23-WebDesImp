@@ -11,12 +11,14 @@
 nav {
     background-color: #19647E;
     padding-top: 30px;
-    width: 25%;
+    width: 20%;
     height: 100%; 
     position: fixed; 
     overflow: auto;
     font-family: Rubik-Light;
     font-size: 1.5vw;
+    margin: 0;
+    padding: 0;
     
 }
 
@@ -26,12 +28,8 @@ nav {
     padding: 0;
 }
 
-.current-page a{
-    color: #191716;
-    background-color: #FCD581;
-}
 
-li a {
+.nav-bar li a {
     text-decoration: none;
     display: block;
     padding: 15px 16px;
@@ -43,7 +41,7 @@ li a {
     border-bottom-color: #FDFDFF;
 }
 
-li a:hover {
+.nav-bar li a:hover {
     background-color: #59C3C3;
     color: #191716;
     padding: 20px 16px;
@@ -69,6 +67,9 @@ li a:hover {
     font-family: Rubik-Light;
 }
 
+.current-page a{
+    background-color: #00B9AE;
+}
 #fedora {
     animation: shake 3s;
     animation-iteration-count: infinite; 
@@ -82,8 +83,74 @@ li a:hover {
 .container-proposal{
    margin-left: 30%; 
 }
+.container-proposal h1{
+    font-size: 3em;
+    padding-top:1em;
+    margin: 0;
+    font-family: Rubik-Light;
+    color: #19647E;
+    position: relative;
+}
+.container-proposal h2{
+    font-size: 2em;
+    padding-top:.5em; 
+    font-family: Rubik-Light;
+    color: #19647E;
+    position: relative;
+}
+.container-proposal h3{
+    font-size: 1.2em;
+    padding-top:.2em; 
+    font-family: Rubik-Light;
+    color: #19647E;
+    position: relative;
+}
+.container-proposal p{
+    font-size: 1em; 
+    font-family: Rubik-Light;
+    padding-right: 5em;
+    width: 75%;
+    color: 191716;
+    position: relative;
+}
+.container-proposal ul{
+    font-size: 1em; 
+    font-family: Rubik-Light;
+    width: 50%;
+    position: relative;
+}
+.container-proposal img{
+    float: right;
+    margin: 2em;
+    margin-right: 5%;
+    border-radius: 10%;
+    box-shadow: 10px 10px 10px #59C3C3;
+    position: relative;
+    max-width:  75%;
+    height: auto;
+}
+.container-proposal table{
+    font-size: 1vm; 
+    font-family: Rubik-Light;
+    width: 50%;
+}
 
 td{
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
+    border: 1px solid black;
+    padding: .5em;
+}
+
+a:link {
+    color: #59C3C3;
+}
+
+a:visited {
+    color: #19647E;
+}
+
+a:hover {
+    color: red;
+}
+a:active {
+    color: #FCD581;
 }
