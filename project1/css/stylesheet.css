@@ -8,19 +8,22 @@
     src: url("/media/Rubik-Light.ttf");
 }
 
-ul {
+nav {
     background-color: #19647E;
-    margin: 0;
-    padding: 0;
     padding-top: 30px;
     width: 25%;
-    list-style-type: none;
     height: 100%; 
     position: fixed; 
     overflow: auto;
     font-family: Rubik-Light;
     font-size: 1.5vw;
     
+}
+
+.nav-bar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .current-page a{
@@ -47,10 +50,10 @@ li a:hover {
 }
 
 .container {
-        margin-left: 30%;
+    margin-left: 30%;
 }
 .container p{
-    font-size: 150%;
+    font-size: 1vw;
     margin-top:5%; 
     margin-right:20%;
     font-family: Rubik-Regular;
@@ -62,7 +65,25 @@ li a:hover {
     float:left;
     padding-top:10%;
     padding-bottom:4%;
-    font-size: 500%;
+    font-size: 4vw;
     font-family: Rubik-Light;
 }
 
+#fedora {
+    animation: shake 3s;
+    animation-iteration-count: infinite; 
+}
+@keyframes shake {
+    0% { transform: rotate(3deg); }
+    50% { transform:  rotate(-3deg); }
+    100% { transform:  rotate(3deg); }
+}
+    
+.container-proposal{
+   margin-left: 30%; 
+}
+
+td{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
