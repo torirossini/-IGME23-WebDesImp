@@ -1,12 +1,4 @@
-
-@font-face{
-    font-family: Rubik-Regular;
-    src: url("/media/Rubik-Regular.ttf");
-}
-@font-face{
-    font-family: Rubik-Light;
-    src: url("/media/Rubik-Light.ttf");
-}
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 nav {
     background-color: #19647E;
@@ -15,7 +7,7 @@ nav {
     height: 100%; 
     position: fixed; 
     overflow: auto;
-    font-family: Rubik-Light;
+    font-family: 'Ubuntu', sans-serif;;
     font-size: 1.5vw;
     margin: 0;
     padding: 0;
@@ -51,24 +43,30 @@ nav {
     margin-left: 30%;
 }
 .container p{
-    font-size: 1vw;
-    margin-top:5%; 
+    font-size: 1.5em;
+    margin-top:6%; 
     margin-right:20%;
-    font-family: Rubik-Regular;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .container h1{
     margin: 0;
     padding: 0;
     float:left;
-    padding-top:10%;
+    padding-top:8%;
     padding-bottom:4%;
-    font-size: 4vw;
-    font-family: Rubik-Light;
+    padding-right: 7%;
+    font-size: 5em;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .current-page a{
     background-color: #00B9AE;
+}
+.container img{
+    position: relative;
+    max-width:  75%;
+    height: auto;
 }
 #fedora {
     animation: shake 3s;
@@ -87,27 +85,27 @@ nav {
     font-size: 3em;
     padding-top:1em;
     margin: 0;
-    font-family: Rubik-Light;
+    font-family: 'Rubik-Light';
     color: #19647E;
     position: relative;
 }
 .container-proposal h2{
     font-size: 2em;
     padding-top:.5em; 
-    font-family: Rubik-Light;
+    font-family: 'Ubuntu', sans-serif;
     color: #19647E;
     position: relative;
 }
 .container-proposal h3{
     font-size: 1.2em;
     padding-top:.2em; 
-    font-family: Rubik-Light;
+    font-family: 'Ubuntu', sans-serif;
     color: #19647E;
     position: relative;
 }
 .container-proposal p{
     font-size: 1em; 
-    font-family: Rubik-Light;
+    font-family: 'Ubuntu', sans-serif;
     padding-right: 5em;
     width: 75%;
     color: 191716;
@@ -115,7 +113,7 @@ nav {
 }
 .container-proposal ul{
     font-size: 1em; 
-    font-family: Rubik-Light;
+    font-family: 'Ubuntu', sans-serif;
     width: 50%;
     position: relative;
 }
@@ -131,7 +129,7 @@ nav {
 }
 .container-proposal table{
     font-size: 1vm; 
-    font-family: Rubik-Light;
+    font-family: 'Ubuntu', sans-serif;
     width: 50%;
 }
 
@@ -140,6 +138,16 @@ td{
     padding: .5em;
 }
 
+footer{
+    font-size: .75em; 
+    font-family: 'Ubuntu', sans-serif;
+    width: 75%;
+    margin-left: 30%;
+    color: 191716;
+    position: relative;
+    padding: 2em;
+    padding-right: 5em;
+}
 a:link {
     color: #59C3C3;
 }
@@ -153,4 +161,29 @@ a:hover {
 }
 a:active {
     color: #FCD581;
+}
+
+@media screen and (max-width: 700px) {
+  nav{
+    width: 100%;
+    height: auto;
+    position: relative;
+    font-size: 1em
+  }
+  
+  .nav-bar li a {
+    text-align: center;
+    float: none;
+    }
+    
+  .container {
+        margin-left: 2em;
+    }
+  .container-proposal {
+        margin-left: 2em;
+    }
+    footer{
+        margin-left: 2em;
+        padding: 2em;
+    }
 }
