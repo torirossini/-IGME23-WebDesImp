@@ -1,0 +1,11 @@
+Give 2 advantages to using event listeners instead of event handlers
+In event handlers, each element can have only one event handling function attached to it at a time. addEventListener() has no such restrictions.
+
+Give a situation where you might use an event handler anyway
+onClick
+What does an event handler (or event listener) "point" at?
+A function
+What are the two advantages of using arrow functions?
+they have a shorter syntax than regular functions
+they do not bind their own this keyword.
+
