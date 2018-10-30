@@ -38,7 +38,58 @@
 </div>
 
 <script>
-/* Write you code here! */
+    let legend = document.querySelector("legend");
+    let infop = document.getElementById("info");
+    let redOpt = document.querySelector("P:nth-of-type(1)");
+    let greenOpt = document.querySelector("P:nth-of-type(2)");
+    let blueOpt = document.querySelector("P:nth-of-type(3)");
+    let redChecked = false;
+    let greenChecked = false;
+    let blueChecked = false;
+    
+    let submitButton = document.getElementById("colorButton");
+    
+    function resetChecked()
+    {
+        redChecked = false;
+        greenChecked = false;
+        blueChecked = false;
+    }
+    
+    submitButton.onclick = function changeInfo(){
+        if(redChecked)
+            {
+                legend.style.color = "red";
+                infop.innerHTML="Your final selection is RED";
+            }
+        else if(blueChecked)
+            {
+                legend.style.color = "blue";
+                infop.innerHTML="Your final selection is BLUE";
+            }
+        else if (greenChecked)
+            {
+                legend.style.color = "green";
+                infop.innerHTML="Your final selection is GREEN";
+            }
+    }
+    
+    redOpt.onclick = function changeInfo(){
+        infop.innerHTML="You've chosen RED";
+        resetChecked();
+        redChecked = true;
+    }
+    blueOpt.onclick = function changeInfo(){
+        infop.innerHTML="You've chosen BLUE";
+        resetChecked();
+        blueChecked = true;
+    }
+    greenOpt.onclick = function changeInfo(){
+        infop.innerHTML="You've chosen GREEN";
+        resetChecked();
+        greenChecked = true;
+    }
+    
 </script>
 </body>
 </html>

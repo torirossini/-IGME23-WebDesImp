@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Douglas Adams Quotes</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+</head>
+<body>
+    <h1>Random Phrases</h1>
+    <div class="container">
+        <p></p>
+        
+    </div>
+    <footer>Tori Rossini 2018</footer>
+
+</body>
+    <script>
+            let phrases = [
+                "The ships hung in the sky in much the same way that bricks don’t.",
+                "He was wrong to think he could now forget that the big, hard, oily, dirty, rainbow-hung Earth on which he lived was a microscopic dot on a microscopic dot lost in the unimaginable infinity of the Universe.",
+                "Nothing travels faster than the speed of light with the possible exception of bad news, which obeys its own special laws.",
+                "In the beginning the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move.",
+                "Don't Panic"
+            ];
+            let quote = phrases[Math.floor(Math.random() * Math.floor(phrases.length))];
+            document.querySelector("p").innerHTML = quote;  
+        
+        </script>
+</html>
