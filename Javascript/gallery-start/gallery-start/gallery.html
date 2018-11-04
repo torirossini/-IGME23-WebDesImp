@@ -61,8 +61,6 @@
 			text-align:center;
 		}
    </style>
-  
-    </script>
 </head>
 <body>
   <section id="main">
@@ -87,6 +85,17 @@
 	span. In JavaScript we access these custom data properties using the .dataset 
 	property. We also covered this in web-apps-6.
 	*/
+         let images = document.querySelectorAll("span");
+         let image = document.getElementById("placeholder");
+
+         for(let element of images)
+             {
+                 element.onclick =function clicked(imagename){
+                     image.src = "images/" + imagename.target.dataset.image; 
+                     imagename.alt-imagename.target.title;
+                 }
+             }
+         
 	</script>
 	   
 </body>
