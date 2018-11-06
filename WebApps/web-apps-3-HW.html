@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>DOM-3</title>
+	<style>
+		body{border:1px solid gray;}
+		p b{transform: rotate(20deg)}
+	</style>
+</head>
+<body>
+<h1>My Page</h1>
+<h2>Info</h2>
+<h2>Pictures</h2>
+<h2>More Info</h2>
+<p>Blah <b>Blah</b> Blah</p>
+<p>Blah <b>Blah</b> Blah</p>
+<p id="lastParagraph">Blah <b>Blah</b> Blah</p>
+<footer>Copyright &copy; <b>20XX</b></footer>
+<script>
+	"use strict";
+    let allH2Headings = document.querySelectorAll("h2");
+    let h1 = document.querySelector("h1");
+    let body = document.querySelector("body");
+    h1.innerHTML = "My UFO Page";
+    allH2Headings[0].innerHTML = "My UFO Info";
+    allH2Headings[1].innerHTML = "My UFO Pictures";
+    allH2Headings[2].innerHTML = "";
+    h1.style.color = "#752323";
+    h1.style.fontFamily = "sans-serif";
+    body.style.fontFamily = "sans-serif";
+    body.style.color = "#752323";
+    for(let element of allH2Headings)
+        {
+            element.style.color = "#752323";
+            element.style.fontFamily = "sans-serif";
+}
+    
+    let p1 = document.querySelector("p");
+    p1.innerHTML = " Report your UFO sightings here " + "<a href='http://www.nuforc.org'>http://www.nuforc.org</a>";
+    p1.style.color = "green";
+    p1.style.fontWeight = "bold";
+    p1.style.fontSize = "2em";
+    p1.style.textTransform = "uppercase";
+    p1.style.textShadow ="3px 2px #A44";
+    
+    document.querySelector("p:nth-of-type(2)").innerHTML = "";
+    document.querySelector("p:nth-of-type(3)").innerHTML = "<img src=\'https://cdn.vox-cdn.com/thumbor/ilfO1rYMXbIaZWZuNJAPYNFhvso=/0x0:1000x667/920x613/filters:focal(420x254:580x414):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58097387/shutterstock_130150004.0.jpg' width=\'400px\' height=\'150px\'>";
+    document.querySelector("footer").innerHTML = "2018 Tori Rossini";
+    </script>
+    
+</body>
+</html>

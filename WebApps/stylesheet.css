@@ -1,0 +1,12 @@
+footer{
+font-size: .5em;
+}
+html{
+    background-image: url("http://a1star.com/images/star--background-seamless-repeating9.jpg");
+    font-family: 'Muli', sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 10%;
+    text-shadow: black;
+}
+
