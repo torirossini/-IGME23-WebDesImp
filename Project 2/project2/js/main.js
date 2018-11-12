@@ -3,16 +3,28 @@
 	
 	// 2
 	let displayTerm = "";
+
+    let usernames = ["HardlyDifficult", "ESL_SC2", "OgamingSC2", "adobe", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb"];
+
+    const TWITCH_URL = "https://api.twitch.tv/kraken/";
+        
+    const TWITCH_KEY = '?client_id=o9qs22c4fetezmqnc31pyac4gycmm3';
+    
 	
-	// 3
+    
+
+    usernames.forEach(function(channel){
+        function makeURL(type, name){
+            return TWITCH_URL + type + "/" + name + TWITCH_KEY;
+        }
+    });
+
+
 	function getData(){
 		console.log("getData() called");
         
-        const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
-        
-        const GIPHY_KEY = "0lmK2uoJe9G9zzR7er0vX19XJ2W8S1q4";
-        let url = GIPHY_URL;
-        url += "api_key=" + GIPHY_KEY;
+
+        let url = TWITCH_URL + TWITCH_KEY;
         
         
         let term = document.querySelector("#searchterm").value; 
