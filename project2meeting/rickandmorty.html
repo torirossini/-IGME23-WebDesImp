@@ -11,28 +11,29 @@
 <header>
 	<h1>Rick and Morty Search</h1>
 </header>
+<div class = "searchContainer">
+   <div class="col-1">
+        <div class="widgets">
+            <input id="searchterm" type="text" size="40" autofocus value="" />
+        </div>
+        <div class="widgets">
+            Search for:
+            <select id="searchtype">
+                <option value ="name" selected>Character</option>
+                <option value="location">Location</option>
+                <option value="episode">Episode</option>
+            </select>
+        </div>
+    </div>
+    <div class = "col-2">
+        <div class="widgets">
+            <button type="button" id="search">Search</button>
+            <br>
+            <button type="button" id="showAlive">Show All Characters</button>
+        </div>
+    </div>
+</div>
 
-<div class="widgets">
-	<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="" />
-</div>
-<div class="widgets">
-	Search for:
-	<select id="searchtype">
-		<option value ="name" selected>Character</option>
-		<option value="location">Location</option>
-		<option value="episode">Episode</option>
-	</select>
-</div>
-<div class="widgets">
-	<button type="button" id="search">Search</button>
-</div>
-
-<div class="widgets">
-	<button type="button" id="showAlive">Show All Characters</button>
-</div>
-
-<hr>
-<h2>Results</h2>
 <div id="content">
     
     

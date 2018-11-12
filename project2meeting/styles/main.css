@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=K2D');
+
+html{
+    font-family: 'K2D', sans-serif;
+}
+
+.widgets{
+    padding: .3em;
+}
+
+.result img{
+    width: 10em;
+    border-radius: 1em;
+    float: left;
+    margin: 1em;
+}
+
+.result {
+    float: left;
+    width: 100%;
+    padding: .5em;
+}
+
+div #info{
+    padding: 3em;
+}
+
+.searchContainer{
+    width: 50%;
+}
+.col-1{
+    float: left;
+    width: 50%;
+    height: 10em;
+}
+.col-2{
+    float: right;
+    width: 50%;
+    height: 10em;
+}
+
+button {
+    background-color: #000000; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 1em;
+    font-size: 16px;
+    margin: .3em;
+}
+
+button : hover{
+    background-color: #1d4457;
+    transition: fade 2s;
+}

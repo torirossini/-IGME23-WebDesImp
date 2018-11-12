@@ -88,7 +88,8 @@ let displayTerm = "";
                   let name = result.name;
                   
                   var line = '<div class= result ><img src ='+ smallURL + ' title= '+ result.id + ' />';
-                  line += `<span>${name}</span>` ;
+                    line += "<div id='info'><span><b>" + name + "</b></span>" + "<br><span><b>Status:</b> " + result.status + "</span><br><span><b>Gender: </b>" + result.gender + "</span><br><span><b>Origin: </b>" + result.origin.name + "</span></div>";
+                  line += "</div>";
                   
                   bigString += line;
               }
@@ -113,7 +114,7 @@ let displayTerm = "";
           
           let results = obj.results;
           console.log("results.length = " + results.length);
-          let bigString = "<p><i>Now showing " + results.length +" " + searchForText + " results for " + displayTerm + "</i></p>";
+          let bigString = "<p><i>Now showing " + results.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
           
           for (let i = 0; i<results.length; i++)
               {
@@ -123,9 +124,9 @@ let displayTerm = "";
                   
                   let name = result.name;
                   
-                  var line = '<div class= result ><img src ='+ smallURL + ' title= '+ result.id + ' />';
-                  line += `<span>${name}</span>` ;
-                  
+                  var line = '<div class= result><img src ='+ smallURL + ' title= '+ result.id + ' />';
+                  line += "<div id='info'><span><b>" + name + "</b></span>" + "<br><span><b>Status:</b> " + result.status + "</span><br><span><b>Gender: </b>" + result.gender + "</span><br><span><b>Origin: </b>" + result.origin.name + "</span></div>";
+                  line += "</div>";
                   bigString += line;
               }
           
