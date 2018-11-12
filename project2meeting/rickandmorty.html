@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+ 	<title>Ticket Master</title>
+    <link rel = "stylesheet" type="text/css" href="styles/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>  
+</head>
+<body>
+<header>
+	<h1>Rick and Morty Search</h1>
+</header>
+
+<div class="widgets">
+	<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="" />
+</div>
+<div class="widgets">
+	Search for:
+	<select id="searchtype">
+		<option value ="name" selected>Character</option>
+		<option value="location">Location</option>
+		<option value="episode">Episode</option>
+	</select>
+</div>
+<div class="widgets">
+	<button type="button" id="search">Search</button>
+</div>
+
+<div class="widgets">
+	<button type="button" id="showAlive">Show All Characters</button>
+</div>
+
+<hr>
+<h2>Results</h2>
+<div id="content">
+    
+    
+</div>
+
+</body>
+</html>
