@@ -1,86 +1,118 @@
-
-    window.onload = (e) => { document.querySelector("#search").onclick = getData};
+//https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
+//ToriRossini42
 	
 	// 2
 	let displayTerm = "";
 
-    let usernames = ["HardlyDifficult", "ESL_SC2", "OgamingSC2", "adobe", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb"];
+    const TM_URL = "https://app.ticketmaster.com/";
+    const TM_KEY = "d9gDLusn4nU03T1jGcC7HMLHxUwOJvgg";
 
-    const TWITCH_URL = "https://api.twitch.tv/kraken/";
-        
-    const TWITCH_KEY = '?client_id=o9qs22c4fetezmqnc31pyac4gycmm3';
-    
+    const vrs = "v2";
 	
-    
+    function makeURL(resource){
+        let url = TM_URL;
+        url += "discovery/v2/" + resource + ".json?apikey=";
+        url+TM_KEY;
+        return url;
+    }
 
-    usernames.forEach(function(channel){
-        function makeURL(type, name){
-            return TWITCH_URL + type + "/" + name + TWITCH_KEY;
+    var page = 0;
+
+    function getEvents(page) {
+
+      $('#events-panel').show();
+      $('#attraction-panel').hide();
+
+      if (page < 0) {
+        page = 0;
+        return;
+      }
+      if (page > 0) {
+        if (page > getEvents.json.page.totalPages-1) {
+          page=0;
         }
+      }
+        
+        //let resource = document.querySelector("#searchtype").value;
+        let url = makeURL() + "&size=" + "events" + "&page="+page;
+
+      $.ajax({
+        type:"GET",
+        url: url,
+        async:true,
+        dataType: "json",
+        success: function(json) {
+              getEvents.json = json;
+                  showEvents(json);
+               },
+        error: function(xhr, status, err) {
+                  console.log(err);
+               }
+      });
+    }
+
+    function showEvents(json) {
+      var items = $('#events .list-group-item');
+      items.hide();
+      var events = json._embedded.events;
+      var item = items.first();
+      for (var i=0;i<events.length;i++) {
+        item.children('.list-group-item-heading').text(events[i].name);
+        item.children('.list-group-item-text').text(events[i].dates.start.localDate);
+        try {
+          item.children('.venue').text(events[i]._embedded.venues[0].name + " in " + events[i]._embedded.venues[0].city.name);
+        } catch (err) {
+          console.log(err);
+        }
+        item.show();
+        item.off("click");
+        item.click(events[i], function(eventObject) {
+          console.log(eventObject.data);
+          try {
+            getAttraction(eventObject.data._embedded.attractions[0].id);
+          } catch (err) {
+          console.log(err);
+          }
+        });
+        item=item.next();
+      }
+    }
+
+    $('#prev').click(function() {
+      getEvents(--page);
     });
 
+    $('#next').click(function() {
+      getEvents(++page);
+    });
 
-	function getData(){
-		console.log("getData() called");
-        
+    function getAttraction(id) {
+      $.ajax({
+        type:"GET",
+        url:"https://app.ticketmaster.com/discovery/v2/attractions/"+id+".json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+        async:true,
+        dataType: "json",
+        success: function(json) {
+              showAttraction(json);
+               },
+        error: function(xhr, status, err) {
+                  console.log(err);
+               }
+      });
+    }
 
-        let url = TWITCH_URL + TWITCH_KEY;
-        
-        
-        let term = document.querySelector("#searchterm").value; 
-        displayTerm = term; 
-        
-        term = term.trim();
-        term = encodeURIComponent(term);
-        if(term.length < 1) return;
-        url += "&q=" + term;
-        let limit = document.querySelector("#limit").value;
-        url += "&limit=" + limit;
-        
-        document.querySelector("#content").innerHTML = "<b>Searching for " + displayTerm + "</b>";
-        console.log(url);
-        
-        console.log(jQuery);
-        console.log($); // $ is an alias to the jQuery object
-        
-        $.ajax({            
-            dataType: "json",
-            url: url,
-            data: null,
-            success: jsonLoaded
-        });
-        $("#content").fadeOut(100);
-	}
-      
-      function jsonLoaded(obj){
-        console.log("obj = " + obj);
-        console.log("obj stringified = " + JSON.stringify(obj));
-          
-          if (!obj.data || obj.data.length == 0){
-            document.querySelector("#content").innerHTML = "<p><i>No results found for "+ displayTerm + "</i></p>";
-              $("#content").fadeIn(500);
-              return;
-          }
-          
-          let results = obj.data;
-          console.log("results.length = " + results.length);
-          let bigString = "<p><i>Here are " + results.length + " results for " + displayTerm +"</i></p>";
-          
-          for (let i = 0; i<results.length; i++)
-              {
-                  let result = results[i];
-                  let smallURL = result.images.fixed_width_small.url;
-                  if(!smallURL) smallURL = "images/no-image-found.png";
-                  
-                  let url = result.url;
-                  
-                  var line = '<div class= result ><img src ='+ smallURL + ' title= '+ result.id + ' />';
-                  line += '<span><a href= '+ url + '>View on Giphy</a></span> <p>Rating: ' +result.rating.toUpperCase() + '</p></div>';
-                  
-                  bigString += line;
-              }
-          
-          document.querySelector("#content").innerHTML = bigString;
-          
-          $("#content").fadeIn(500);
-      }
+    function showAttraction(json) {
+      $('#events-panel').hide();
+      $('#attraction-panel').show();
+
+      $('#attraction-panel').click(function() {
+        getEvents(page);
+      });
+
+      $('#attraction .list-group-item-heading').first().text(json.name);
+      $('#attraction img').first().attr('src',json.images[0].url);
+      $('#classification').text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
+    }
+
+    getEvents(page);
+
