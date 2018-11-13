@@ -1,9 +1,24 @@
 //https://rickandmortyapi.com/documentation
 
 window.onload = (e) => { 
+    const searchField = document.querySelector("#searchterm");
+    const prefix = "tar6248-"; // change 'abc1234' to your banjo id
+    const searchKey = prefix + "name";
+    const storedName = localStorage.getItem(searchKey);
+    
     document.querySelector("#showAlive").onclick = allCharactersData;
     document.querySelector("#search").onclick = getSearchedData;
+    
+    if (storedName){
+	searchField.value = storedName;
+    }else{
+        searchField.value = ""; // a default value if `nameField` is not found
+    }
 };
+
+    searchField.onchange = e =>{ localStorage.setItem(searchKey, e.target.value); };
+
+let displayTerm = "";
 
 const searchBy = {
   "characters": "https://rickandmortyapi.com/api/character",
@@ -11,8 +26,6 @@ const searchBy = {
   "episodes": "https://rickandmortyapi.com/api/episode"
 }
 
-let displayTerm = "";
-	
 	// 3
 	function getSearchedData(){
         let term = document.querySelector("#searchterm").value;
