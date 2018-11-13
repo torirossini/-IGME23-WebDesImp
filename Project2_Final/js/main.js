@@ -132,7 +132,7 @@ function jsonShowCharacters(obj){
           }
           
           let results = obj.results;
-          let bigString = "<p><i>Now showing " + results.length + " characters</i></p>";
+          let bigString = "<p><i>Now showing " + results.length + " of " + obj.info.count + " characters</i></p>";
           
           printCharacterResults(results, bigString);
       }
@@ -148,7 +148,7 @@ function jsonShowLocations(obj){
           }
           
           let results = obj.results;
-          let bigString = "<p><i>Now showing " + results.length + " locations</i></p>";
+          let bigString = "<p><i>Now showing " + results.length + " of " + obj.info.count + " locations</i></p>";
           
           printLocationResults(results, bigString);
       }
@@ -163,7 +163,7 @@ function jsonShowEpisodes(obj){
           }
           
           let results = obj.results;
-          let bigString = "<p><i>Now showing " + results.length + " episodes</i></p>";
+          let bigString = "<p><i>Now showing " + results.length + " of " + obj.info.count + " episodes</i></p>";
           
           printEpisodeResults(results, bigString);
       }
