@@ -2,10 +2,67 @@
 
 html{
     font-family: 'K2D', sans-serif;
+
 }
 
+header{
+    background-color: #011f18;
+    background-image: url(https://i.redd.it/eg7w8d3e6rhz.png);
+    background-repeat: no-repeat;
+    height: 35em;
+    background-position: center top;
+    background-attachment: fixed;
+}
 .widgets{
     padding: .3em;
+    margin-top: 1em;
+}
+
+
+#searchterm{
+    width: auto;
+    border-radius: 1em;
+    padding: .5em;
+    margin-top: 8px;
+    margin-right: 1em;
+    font-size: 17px;
+    
+}
+#content{
+    margin: 1em;
+}
+
+
+.searchContainer{
+    padding: 1em;
+    margin-left: 1em;
+    text-align: center;
+    
+    
+}
+
+#search{
+    width: 40%;
+}
+.col-1{
+    width: 100%;
+}
+.col-2{
+    text-align: center;
+    height: 10em;
+}
+
+button {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 1em;
+    font-size: 16px;
+    margin: .3em;
 }
 
 .row {
@@ -48,7 +105,6 @@ html{
     border: solid;
     border-radius: 1em;
     display: inline-grid;
-    margin: ;
     
 
     
@@ -64,16 +120,34 @@ html{
     
 }
 
+
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 1600px) {
     .column {
         width: 25%;
+        margin: 1em;
     }
+    
+    button{
+        width: 100%;
+    }
+    
+    #search{
+    width: 100%;
+}
+    
+.col-2{
+
+    width: 100%;
+    margin-bottom: 4em;
+}
+
 }
 
 @media screen and (max-width: 1300px) {
     .column {
-        width: 45%;
+        width: 43%;
     }
 }
 
@@ -82,36 +156,4 @@ html{
     .column {
         width: 70%;
     }
-}
-
-
-.searchContainer{
-    width: 50%;
-}
-.col-1{
-    width: 100%;
-    height: em;
-}
-.col-2{
-
-    width: 50%;
-    height: 10em;
-}
-
-button {
-    background-color: #000000; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 1em;
-    font-size: 16px;
-    margin: .3em;
-}
-
-button : hover{
-    background-color: #1d4457;
-    transition: fade 2s;
 }

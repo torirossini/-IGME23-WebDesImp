@@ -7,7 +7,7 @@ window.onload = (e) => {
     document.querySelector("#showEpisodes").onclick = allEpisodeData;
     document.querySelector("#search").onclick = getSearchedData;
     
-    const searchField = document.querySelector("#searchterm");
+    let searchField = document.querySelector("#searchterm");
     const prefix = "tar6248-"; // change 'abc1234' to your banjo id
     const searchKey = prefix + "name";
     const storedName = localStorage.getItem(searchKey);
@@ -78,11 +78,12 @@ function ajax(url, method){
         console.log(jQuery);
         console.log($); // $ is an alias to the jQuery object
         
-        $.ajax({            
+        $.ajax({             
             dataType: "json",
             url: url,
             data: null,
-            success: method
+            success: method,
+            error: errorOut
         });
         $("#content").fadeOut(100);   
 }
@@ -106,19 +107,23 @@ function getSearchedData(){
         let url = "https://rickandmortyapi.com/api/" + searchForText + "/?name=" + term;
         
         document.querySelector("#content").innerHTML = "<b>Searching for " + displayTerm + "</b>";
-        
-        if(searchFor.options[searchFor.selectedIndex].value = "character")
+        try{
+        if(searchFor.options[searchFor.selectedIndex].value === "name")
             {
                 ajax(url, jsonShowSearchCharacters);
             }
-        if(searchFor.options[searchFor.selectedIndex].value = "episode")
+        else if(searchFor.options[searchFor.selectedIndex].value === "episode")
             {
                 ajax(url, jsonShowSearchEpisodes);
             }
-        if(searchFor.options[searchFor.selectedIndex].value = "location")
+        else if(searchFor.options[searchFor.selectedIndex].value === "location")
             {
                 ajax(url, jsonShowSearchLocations);
             }
+        }
+        catch{
+            errorOut();
+        }
 
 	}
 
@@ -214,6 +219,26 @@ function jsonShowSearchEpisodes(obj){
           printEpisodeResults(result, bigString);
       }
 
+function jsonShowSearchLocations(obj){
+  
+        PrintJSON(obj);
+          
+        let searchFor = document.getElementById("searchtype");
+        let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
+          
+          if (!obj.results || obj.results.length == 0){
+            document.querySelector("#content").innerHTML = "<p><i>There are no " +searchForText + "s that match your search input</i></p>";
+              $("#content").fadeIn(500);
+              return;
+          }
+          
+          let result = obj.results;
+          console.log("results.length = " + result.length);
+          let bigString = "<p><i>Now showing " + result.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
+          
+          printLocationResults(result, bigString);
+      }
+
 
 function printCharacterResults(results, bs){
             bs += '<div class = "row">';
@@ -223,10 +248,8 @@ function printCharacterResults(results, bs){
                           let smallURL = result.image;
                           if(!smallURL) smallURL = "images/no-image-found.png";
 
-                          let name = result.name;
-
                           let line = '<div class = "column"><div class="result-content"><img src ='+ smallURL + ' title= '+ result.id + ' />';
-                          line += "<b>" + name + "</b>" + ""
+                          line += "<b>" + result.name + "</b>" + ""
                           + "<span><b>Status:</b> " + result.status + "</span>"
                           + "<span><b>Gender: </b>" + result.gender + "</span>"
                           + "<span><b>Origin: </b>" + result.origin.name + "</span>";
@@ -276,3 +299,10 @@ function printEpisodeResults(results, bs){
           
             $("#content").fadeIn(500);
       }
+    
+    function errorOut()
+    {
+        document.querySelector("#content").innerHTML = "<p><i>There are no results that match your search input for the selected search type. Try something else! </i></p>";
+              $("#content").fadeIn(500);
+              return;
+    }
