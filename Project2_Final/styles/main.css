@@ -16,6 +16,7 @@ html{
 .row,
 .row > .column {
     padding: 1em;
+    margin: 1em;
 }
 
 /* Create four equal columns that floats next to each other */
@@ -38,6 +39,17 @@ html{
     border-radius: 1em;
     display: inline-grid;
     margin: auto;
+}
+
+.result-content-loc {
+    padding:1em;
+    width: 100%;
+    
+    border: solid;
+    border-radius: 1em;
+    display: inline-grid;
+    margin: ;
+    
 
     
 }
