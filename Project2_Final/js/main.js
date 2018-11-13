@@ -123,10 +123,7 @@ function getSearchedData(){
 }
 */
 function jsonShowCharacters(obj){
-          PrintJSON(obj);
-          //pagination(obj);
-            
-          pages(obj);
+
 
           if (!obj.results || obj.results.length == 0){
             document.querySelector("#content").innerHTML = "<p><i>There are no characters to show</i></p>";
@@ -142,8 +139,7 @@ function jsonShowCharacters(obj){
 
 function jsonShowLocations(obj){
     
-          PrintJSON(obj);
-          pagination(obj);
+
     
           if (!obj.results || obj.results.length == 0){
             document.querySelector("#content").innerHTML = "<p><i>There are no locations to show</i></p>";
@@ -158,9 +154,7 @@ function jsonShowLocations(obj){
       }
 
 function jsonShowEpisodes(obj){
-    
-          PrintJSON(obj);
-          pagination(obj);
+
     
           if (!obj.results || obj.results.length == 0){
             document.querySelector("#content").innerHTML = "<p><i>There are no episodes to show</i></p>";
@@ -177,9 +171,7 @@ function jsonShowEpisodes(obj){
 
 function jsonShowSearchCharacters(obj){
   
-        PrintJSON(obj);
-        pagination(obj);
-    
+
         let searchFor = document.getElementById("searchtype");
         let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
           
@@ -195,9 +187,8 @@ function jsonShowSearchCharacters(obj){
           printCharacterResults(result, bigString);
       }
 function jsonShowSearchEpisodes(obj){
-  
-        PrintJSON(obj);
-        pagination(obj);
+
+
     
         let searchFor = document.getElementById("searchtype");
         let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
@@ -216,9 +207,7 @@ function jsonShowSearchEpisodes(obj){
 
 function jsonShowSearchLocations(obj){
   
-        PrintJSON(obj);
-        pagination(obj);
-    
+
         let searchFor = document.getElementById("searchtype");
         let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
           
