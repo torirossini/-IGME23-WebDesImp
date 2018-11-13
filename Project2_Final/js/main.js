@@ -21,7 +21,6 @@ window.onload = (e) => {
     searchField.onchange = e =>{ localStorage.setItem(searchKey, e.target.value); };
 };
 
-    
 
 let displayTerm = "";
 
@@ -33,20 +32,17 @@ const searchBy = {
 
 //Called when Show All Characters button is pressed
 function allCharactersData() {
-        console.log("allCharactersData() called");
         
         const MORTY_URL = searchBy["characters"];
         
         let url = MORTY_URL;
         
         document.querySelector("#content").innerHTML = "<b>Searching for " + displayTerm + "</b>";
-
         ajax(url, jsonShowCharacters);
 
 }
 
 function allLocationData() {
-        console.log("allLocationData() called");
         
         const MORTY_URL = searchBy["locations"];
         
@@ -59,7 +55,6 @@ function allLocationData() {
 }
 
 function allEpisodeData() {
-        console.log("allEpisodeData() called");
         
         const MORTY_URL = searchBy["episodes"];
         
@@ -72,12 +67,6 @@ function allEpisodeData() {
 }
 
 function ajax(url, method){
-    
-        console.log(url);
-    
-        console.log(jQuery);
-        console.log($); // $ is an alias to the jQuery object
-        
         $.ajax({             
             dataType: "json",
             url: url,
@@ -87,10 +76,6 @@ function ajax(url, method){
         });
         $("#content").fadeOut(100);   
 }
-function PrintJSON(obj){
-            console.log("obj = " + obj);
-            console.log("obj stringified = " + JSON.stringify(obj));
-      }
 
 function getSearchedData(){
         let term = document.querySelector("#searchterm").value;
@@ -127,11 +112,22 @@ function getSearchedData(){
 
 	}
 
-
-
+/*function pagination(o){
+    document.querySelector(".pages").innerHTML ="";
+    for(let i = 0; i < o.info.pages; i++)
+        {
+            document.querySelector(".pages").innerHTML += "<button class='page-button' id = 'button-"+ (i+1) + "'>" + (i + 1) + "</button>"; 
+            document.querySelector("#button-"+(i+1)).onclick = 
+        }
+    $("#pages").fadeIn(500);
+}
+*/
 function jsonShowCharacters(obj){
           PrintJSON(obj);
-          
+          //pagination(obj);
+            
+          pages(obj);
+
           if (!obj.results || obj.results.length == 0){
             document.querySelector("#content").innerHTML = "<p><i>There are no characters to show</i></p>";
               $("#content").fadeIn(500);
@@ -139,7 +135,6 @@ function jsonShowCharacters(obj){
           }
           
           let results = obj.results;
-          console.log("results.length = " + results.length);
           let bigString = "<p><i>Now showing " + results.length + " characters</i></p>";
           
           printCharacterResults(results, bigString);
@@ -148,7 +143,8 @@ function jsonShowCharacters(obj){
 function jsonShowLocations(obj){
     
           PrintJSON(obj);
-          
+          pagination(obj);
+    
           if (!obj.results || obj.results.length == 0){
             document.querySelector("#content").innerHTML = "<p><i>There are no locations to show</i></p>";
               $("#content").fadeIn(500);
@@ -156,7 +152,6 @@ function jsonShowLocations(obj){
           }
           
           let results = obj.results;
-          console.log("results.length = " + results.length);
           let bigString = "<p><i>Now showing " + results.length + " locations</i></p>";
           
           printLocationResults(results, bigString);
@@ -165,7 +160,8 @@ function jsonShowLocations(obj){
 function jsonShowEpisodes(obj){
     
           PrintJSON(obj);
-          
+          pagination(obj);
+    
           if (!obj.results || obj.results.length == 0){
             document.querySelector("#content").innerHTML = "<p><i>There are no episodes to show</i></p>";
               $("#content").fadeIn(500);
@@ -173,7 +169,6 @@ function jsonShowEpisodes(obj){
           }
           
           let results = obj.results;
-          console.log("results.length = " + results.length);
           let bigString = "<p><i>Now showing " + results.length + " episodes</i></p>";
           
           printEpisodeResults(results, bigString);
@@ -183,7 +178,8 @@ function jsonShowEpisodes(obj){
 function jsonShowSearchCharacters(obj){
   
         PrintJSON(obj);
-          
+        pagination(obj);
+    
         let searchFor = document.getElementById("searchtype");
         let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
           
@@ -194,15 +190,15 @@ function jsonShowSearchCharacters(obj){
           }
           
           let result = obj.results;
-          console.log("results.length = " + result.length);
-          let bigString = "<p><i>Now showing " + result.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
+          let bigString = "<p><i>Now showing " + result.length +" of " + obj.info.count + " " + searchForText + " results for '" + displayTerm + "'</i></p>";
           
           printCharacterResults(result, bigString);
       }
 function jsonShowSearchEpisodes(obj){
   
         PrintJSON(obj);
-          
+        pagination(obj);
+    
         let searchFor = document.getElementById("searchtype");
         let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
           
@@ -213,8 +209,7 @@ function jsonShowSearchEpisodes(obj){
           }
           
           let result = obj.results;
-          console.log("results.length = " + result.length);
-          let bigString = "<p><i>Now showing " + result.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
+          let bigString = "<p><i>Now showing " + result.length +" of " + obj.info.count + " " + searchForText + " results for '" + displayTerm + "'</i></p>";
           
           printEpisodeResults(result, bigString);
       }
@@ -222,7 +217,8 @@ function jsonShowSearchEpisodes(obj){
 function jsonShowSearchLocations(obj){
   
         PrintJSON(obj);
-          
+        pagination(obj);
+    
         let searchFor = document.getElementById("searchtype");
         let searchForText = searchFor.options[searchFor.selectedIndex].text.toLowerCase();
           
@@ -233,8 +229,7 @@ function jsonShowSearchLocations(obj){
           }
           
           let result = obj.results;
-          console.log("results.length = " + result.length);
-          let bigString = "<p><i>Now showing " + result.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
+          let bigString = "<p><i>Now showing " + result.length +" of " + obj.info.count + " " + searchForText + " results for '" + displayTerm + "'</i></p>";
           
           printLocationResults(result, bigString);
       }
@@ -258,7 +253,7 @@ function printCharacterResults(results, bs){
                       }
             bs += '</div>';
           
-            document.querySelector("#content").innerHTML = bs;
+            document.querySelector("#content").innerHTML += bs;
           
             $("#content").fadeIn(500);
       }
@@ -277,7 +272,7 @@ function printLocationResults(results, bs){
                       }
             bs += '</div>';
           
-            document.querySelector("#content").innerHTML = bs;
+            document.querySelector("#content").innerHTML += bs;
           
             $("#content").fadeIn(500);
       }
@@ -295,7 +290,7 @@ function printEpisodeResults(results, bs){
                       }
             bs += '</div>';
           
-            document.querySelector("#content").innerHTML = bs;
+            document.querySelector("#content").innerHTML += bs;
           
             $("#content").fadeIn(500);
       }
