@@ -46,7 +46,7 @@ let displayTerm = "";
       function allCharactersData() {
         console.log("allCharactersData() called");
         
-        const MORTY_URL = searchBy["characters"];
+        const MORTY_URL = "https://rickandmortyapi.com/api/character/";
         
         let url = MORTY_URL;
         
@@ -79,24 +79,7 @@ let displayTerm = "";
           console.log("results.length = " + results.length);
           let bigString = "<p><i>Now showing " + results.length + " characters</i></p>";
           
-          for (let i = 0; i<results.length; i++)
-              {
-                  let result = results[i];
-                  let smallURL = result.image;
-                  if(!smallURL) smallURL = "images/no-image-found.png";
-                  
-                  let name = result.name;
-                  
-                  var line = '<div class= result ><img src ='+ smallURL + ' title= '+ result.id + ' />';
-                    line += "<div id='info'><span><b>" + name + "</b></span>" + "<br><span><b>Status:</b> " + result.status + "</span><br><span><b>Gender: </b>" + result.gender + "</span><br><span><b>Origin: </b>" + result.origin.name + "</span></div>";
-                  line += "</div>";
-                  
-                  bigString += line;
-              }
-          
-          document.querySelector("#content").innerHTML = bigString;
-          
-          $("#content").fadeIn(500);
+          printResults(results, bigString);
       }
 
       function jsonShowSearchCharacters(obj){
@@ -112,11 +95,18 @@ let displayTerm = "";
               return;
           }
           
-          let results = obj.results;
-          console.log("results.length = " + results.length);
-          let bigString = "<p><i>Now showing " + results.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
+          let result = obj.results;
+          console.log("results.length = " + result.length);
+          let bigString = "<p><i>Now showing " + result.length +" " + searchForText + " results for '" + displayTerm + "'</i></p>";
           
-          for (let i = 0; i<results.length; i++)
+          printResults(result, bigString);
+      }
+
+
+function printResults(results, bs)
+{
+    bs += '<div class = "row">';
+    for (let i = 0; i<results.length; i++)
               {
                   let result = results[i];
                   let smallURL = result.image;
@@ -124,13 +114,17 @@ let displayTerm = "";
                   
                   let name = result.name;
                   
-                  var line = '<div class= result><img src ='+ smallURL + ' title= '+ result.id + ' />';
-                  line += "<div id='info'><span><b>" + name + "</b></span>" + "<br><span><b>Status:</b> " + result.status + "</span><br><span><b>Gender: </b>" + result.gender + "</span><br><span><b>Origin: </b>" + result.origin.name + "</span></div>";
-                  line += "</div>";
-                  bigString += line;
+                  let line = '<div class = "column"><div class="result-content"><img src ='+ smallURL + ' title= '+ result.id + ' />';
+                  line += "<b>" + name + "</b>" + ""
+                  + "<span><b>Status:</b> " + result.status + "</span>"
+                  + "<span><b>Gender: </b>" + result.gender + "</span>"
+                  + "<span><b>Origin: </b>" + result.origin.name + "</span>";
+                  line += "<br></div></div>";
+                  bs += line;
               }
+    bs += '</div>';
           
-          document.querySelector("#content").innerHTML = bigString;
+          document.querySelector("#content").innerHTML = bs;
           
           $("#content").fadeIn(500);
-      }
+}
