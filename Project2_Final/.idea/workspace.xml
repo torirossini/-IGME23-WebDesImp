@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db7a9101-eb40-478d-9015-26029fb91252" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/documentation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2.html" beforeDir="false" afterPath="$PROJECT_DIR$/project2.html" afterDir="false" />
-    </list>
+    <list default="true" id="db7a9101-eb40-478d-9015-26029fb91252" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,6 +15,7 @@
     <session id="-840255930">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -207,16 +203,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542151120646</updated>
-      <workItem from="1542151123297" duration="5370000" />
+      <workItem from="1542151123297" duration="5596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5370000" />
+    <option name="totallyTimeSpent" value="5596000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.122934565" />
