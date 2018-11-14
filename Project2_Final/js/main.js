@@ -291,7 +291,7 @@ function printEpisodeResults(results, bs) {
     $("#content").fadeIn(500);
 }
 
-//This is a function to be called if any error is thrown. 
+//This is a function to be called if any error is thrown.
 function errorOut() {
     document.querySelector("#content").innerHTML = "<p><i>There are no results that match your search input for the selected search type. Try something else! </i></p>";
     $("#content").fadeIn(500);
