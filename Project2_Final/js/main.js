@@ -44,6 +44,7 @@ function allCharactersData() {
 
 }
 
+//Called when Show All Locations is pressed
 function allLocationData() {
 
     const MORTY_URL = searchBy["locations"];
@@ -56,6 +57,7 @@ function allLocationData() {
 
 }
 
+// Called when Show All Episodes is pressed
 function allEpisodeData() {
 
     const MORTY_URL = searchBy["episodes"];
@@ -68,6 +70,7 @@ function allEpisodeData() {
 
 }
 
+//Helper function which takes a url and the method to call upon success
 function ajax(url, method) {
     $.ajax({
         dataType: "json",
@@ -79,6 +82,7 @@ function ajax(url, method) {
     $("#content").fadeOut(100);
 }
 
+//Creates URL for search query and passes it to the correct search format function
 function getSearchedData() {
     let term = document.querySelector("#searchterm").value;
     displayTerm = term;
@@ -111,6 +115,7 @@ function getSearchedData() {
 
 }
 
+//Ended up becoming a function which loads more results.
 function makePages(obj, type) {
     let nextPage = obj.info.next;
 
@@ -118,6 +123,7 @@ function makePages(obj, type) {
     nextButton.onclick = function (){ajax(nextPage, type)};
 }
 
+//Formats results for characters
 function jsonShowCharacters(obj) {
 
     if (!obj.results || obj.results.length == 0) {
@@ -133,6 +139,7 @@ function jsonShowCharacters(obj) {
     printCharacterResults(results, bigString);
 }
 
+//Formats results for locations
 function jsonShowLocations(obj) {
 
     if (!obj.results || obj.results.length == 0) {
@@ -164,7 +171,7 @@ function jsonShowEpisodes(obj) {
     printEpisodeResults(results, bigString);
 }
 
-
+//Formats results for characters when searched
 function jsonShowSearchCharacters(obj) {
 
 
@@ -184,6 +191,7 @@ function jsonShowSearchCharacters(obj) {
     printCharacterResults(result, bigString);
 }
 
+//formats episode search results
 function jsonShowSearchEpisodes(obj) {
 
 
@@ -203,6 +211,7 @@ function jsonShowSearchEpisodes(obj) {
     printEpisodeResults(result, bigString);
 }
 
+//Formats episode search locations
 function jsonShowSearchLocations(obj) {
 
 
@@ -222,7 +231,7 @@ function jsonShowSearchLocations(obj) {
     printLocationResults(result, bigString);
 }
 
-
+//formats character results
 function printCharacterResults(results, bs) {
     bs += '<div class = "row">';
     for (let i = 0; i < results.length; i++) {
@@ -245,6 +254,7 @@ function printCharacterResults(results, bs) {
     $("#content").fadeIn(500);
 }
 
+// formats location results
 function printLocationResults(results, bs) {
     bs += '<div class = "row">';
     for (let i = 0; i < results.length; i++) {
@@ -263,6 +273,7 @@ function printLocationResults(results, bs) {
     $("#content").fadeIn(500);
 }
 
+// formats episode results
 function printEpisodeResults(results, bs) {
     bs += '<div class = "row">';
     for (let i = 0; i < results.length; i++) {
@@ -280,6 +291,7 @@ function printEpisodeResults(results, bs) {
     $("#content").fadeIn(500);
 }
 
+//This is a function to be called if any error is thrown. 
 function errorOut() {
     document.querySelector("#content").innerHTML = "<p><i>There are no results that match your search input for the selected search type. Try something else! </i></p>";
     $("#content").fadeIn(500);
