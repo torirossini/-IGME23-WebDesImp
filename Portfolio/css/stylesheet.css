@@ -1,0 +1,17 @@
+.bg-background
+{
+  background-color: #1E1E1E;
+}
+
+.bg-currentLine{
+    background-color: #505050;
+}
+
+.text-foreground
+{
+    color: #E2E2E2;
+}
+
+.text-comment{
+    color: #7F9F7F;
+}
