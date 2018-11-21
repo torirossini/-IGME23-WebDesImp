@@ -1,6 +1,15 @@
+.btn{
+    transition: .3s;
+}
+
+.btn:hover{
+    background-color: #007ACC;
+    padding: .8em;
+    
+}
 .bg-background
 {
-  background-color: #1E1E1E;
+  background-color: #252526;
 }
 
 .bg-currentLine{
@@ -9,9 +18,21 @@
 
 .text-foreground
 {
-    color: #E2E2E2;
+    color: #F1F1F1;
 }
 
 .text-comment{
     color: #7F9F7F;
+}
+
+.text-blue{
+color: #007ACC;
+}
+
+.font-monospace{
+font-family: monospace;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: black;
 }
