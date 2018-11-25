@@ -17,49 +17,57 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
+      
+    <link href="https://fonts.googleapis.com/css?family=Niramit" rel="stylesheet">
     
   </head>
   <body>
-        <nav class="navbar navbar-expand-lg bg-background fixed-top">
-          <a class="navbar-brand js-scroll-trigger" href="#">Tori Rossini</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#section1">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#section3">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#section4">Contact</a>
-              </li>
-            </ul>
-          </div>
-            
-        </nav>
+    <nav class="navbar font-monospace navbar-expand-lg navbar-dark bg-currentLine fixed-top">
+      <a class="navbar-brand" href="#section1">Tori Rossini</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="#section1">Home</a>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="#section2">Portfolio</a>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="#section3">About Me</a>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="#section4">Contact Me</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
         <div class="page-header pb-5 pt-5 pb-5 pl-5 bg-background" id = "section1">
             <h1 class="pt-5  text-foreground font-monospace">Tori Rossini;</h1> 
             <h2 class = "text-comment font-monospace">//Game Developer, Front-End Software Engineer</h2>
-            <span class = "text-comment font-monospace">--------------------------------------------------------------------------------------------</span>
             
         </div>
-        <div class="container-fluid  pl-auto d-flex align-items-center pt-4 pt-pd-0 pr-5 pl-5 bg-background text-foreground" id= "#section2">
-         <div class="row">
+      <div class="container-fluid bg-background">
+      <div class="container-fluid bg-background">
+          <h1 class="text-foreground ml-4 mb-4">Portfolio</h1>
+          </div>
+        <div class="container-fluid pl-auto d-flex align-items-center pt-4 pt-pd-0 pr-5 pl-5 bg-background text-foreground" id= "#section2">
+         <div class="row p-4  mb-5 bg-currentLine rounded text-foreground">
               <div class="col-md-4 mb-4">
                 <div class="thumbnail ">
                   <a href="images/cd2077-opt.gif">
                     <img class ="rounded" src="images/cd2077-opt.gif" alt="Cyberdrive 2077" style="width:100%">
                   </a>
                     <div class="caption pt-3">
-                     <h2 class="">Cyberdrive 2077</h2>
-                       <h3 class="font-monospace">Gameplay Programmer, Quality Assurance Lead</h3>
-                        <p>Free to play mobile game developed using Unity3D. Falls into the infinite runner genre; similar to titles such as <i>Race the Sun</i> and the original Cuberunner.</p>
-                      <button type="button" class="btn bg-background text-foreground border border-light ">Read More</button>
+                     <h2 class="m-2">Cyberdrive 2077</h2>
+                       <h3 class="font-monospace m-2">Gameplay Programmer, Quality Assurance Lead</h3>
+                        <p class="m-2">Free to play mobile game developed using Unity3D. Falls into the infinite runner genre; similar to titles such as <i>Race the Sun</i> and the original Cuberunner.</p>
+                        <p class="m-2">Developed with a team of six people, I programmed a variety of core game mechanics and menu functionality. I also authored our build verification test procedures and maintained the bug database. We used analytics and playtest data to make data-driven decisions while developing the game.</p>
+                        <p class="m-2">It will be available on App Store and Google Play Store in Spring 2019.</p>
+                        <a href ="https://www.youtube.com/watch?v=chCJ44bU0uU"><button type="button" class="btn m-2 bg-background text-foreground border border-light ">Watch the Trailer</button></a>
                     </div>
                 </div>
               </div>
@@ -69,10 +77,10 @@
                     <img class ="rounded" src="images/911op.PNG" alt="911 Operator" style="width:100%">
                     </a>
                     <div class="caption pt-3">
-                       <h2>911 Operator</h2>
-                       <h3 class="font-monospace">Gameplay Programmer, Lead Artist</h3>
-                        <p>Desktop game developed using Unity2D for Global Game Jam 2018. Made first-playable version in 48 hours. Used Adobe Illustrator and Photoshop to create assets, and programmed mechanics using C#. </p>
-                        <button type="button" class="btn bg-background text-foreground border border-light ">Read More</button>
+                       <h2 class="m-2">911 Operator</h2>
+                       <h3 class="m-2 font-monospace">Gameplay Programmer, Lead Artist</h3>
+                        <p class="m-2">Desktop game developed using Unity2D for Global Game Jam 2018. Made first-playable version in 48 hours. Used Adobe Illustrator and Photoshop to create assets, and programmed mechanics using C#. </p>
+                        <a href="https://globalgamejam.org/2018/games/911-operator"><button type="button" class=" m-2 btn bg-background text-foreground border border-light ">Check it out!</button></a>
                     </div>
                   
                 </div>
@@ -83,10 +91,14 @@
                     <img class ="rounded" src="images/lineSliderTitle.jpeg" alt="Line Slider Title Card" style="width:100%">
                     </a>
                     <div class="caption pt-3">
-                        <h2>Additional Credits</h2>
-                        <p>A collection of other games I've worked on in one way or another. Click "Read More" for what I did for each project, and a download link for each game!</p>
-                        <p>All of these games were a part of the MassDiGI Summer Innovation Program.</p>
-                      <button type="button" class="btn bg-background text-foreground border border-light ">Read More</button>
+                        <h2 class="m-2">Additional Credits</h2>
+                        <ul>
+                        <li><b>Line Slider: Paint the World!</b> - Additional Programmer</li>
+                        <li><b>Lead the Light</b> - Additional Programmer</li>
+                        <li><b>Spell Strike</b> - Additional Programmer</li>
+                        </ul>
+                        <p class="m-2">All of these games were a part of the MassDiGI 2018 Summer Innovation Program.</p>
+                      <a href="https://twitter.com/The_Games_Guild?lang=en"><button type="button" class="btn m-2 bg-background text-foreground border border-light ">Follow on Twitter</button></a>
                     </div>
                 </div>
               </div>
@@ -94,16 +106,16 @@
         </div>
       
       
-      <div class="container-fluid p-5 bg-background text-foreground" id= "section3">
-                      <span class = "text-comment font-monospace">--------------------------------------------------------------------------------------------</span>
-          <h1>About Me</h1>
-          <p>Hi, I'm Tori Rossini! I'm a game programmer and developer, and I'm always looking to broaden my skillset. I'm particularly skilled scripting in C# and Java, and have a passion for breaking my games in every way a player possibly could, in order to have an extremely well-tested and thoughtful final product. I have the most experience with gameplay programming, but am looking to deepen my understanding of different design principles in games. I'm also extremely interested in tech art.</p>
+      <div class="container p-5 mt-5 mb-5 bg-background text-foreground" id= "section3">
+          <h1 class="mb-5">About Me</h1>
+          <p class="mb-4">Hi, I'm Tori Rossini! I'm a game programmer and developer, and I'm always looking to broaden my skillset. I'm particularly skilled scripting in C# and Java, and have a passion for breaking my games in every way a player possibly could, in order to have an extremely well-tested and thoughtful final product. I have the most experience with gameplay programming, but am looking to deepen my understanding of different design principles in games. I'm also extremely interested in tech art.</p>
 
           <p>I'm currently in my second year of college, studying Game Design and Development major at Rochester Institute of Technology. I am also the Social Director for Computer Science House, which is an organization driven by passion for personal projects and learning about as much as possible.</p>
+          
+            <a href ="Resumes/tori_software_resume10-19-18%20(1).pdf" download="toriRossini_resume"><button type="button" class="btn m-2 bg-background text-foreground border border-light" >Download My Resume!</button></a>
       </div>
       
-    <div class="container-fluid p-5 bg-background text-foreground" id= "section4">
-    <span class = "text-comment font-monospace">--------------------------------------------------------------------------------------------</span>
+    <div class="container p-5 mt-5 bg-background text-foreground" id= "section4">
     <h1>Contact Me!</h1>
     <div class="row">
         <div class="col-md-9 mb-md-0 mb-5">
@@ -138,10 +150,10 @@
             </div>
         </div>
     </div>
-   
-   <div class="container">
+    </div>
+   <div class="container-fluid pt-4 pb-4 font-monospace bg-currentLine text-foreground">
    <footer>
-       memes
+       
    </footer>
    </div>
 

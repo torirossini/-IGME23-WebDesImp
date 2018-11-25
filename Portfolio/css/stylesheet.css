@@ -1,3 +1,6 @@
+html{
+    font-family: 'Niramit', sans-serif;
+}
 .btn{
     transition: .3s;
 }
@@ -35,4 +38,17 @@ font-family: monospace;
 
 .navbar-default .navbar-toggle .icon-bar {
     background-color: black;
+}
+
+bg-image{
+    background-image: url('https://pre00.deviantart.net/afed/th/pre/f/2012/249/e/2/grey_hexagons_by_5p4rk13r-d5ds9t4.png');
+    
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
+.container li{
+ margin-bottom: 1em;
 }
