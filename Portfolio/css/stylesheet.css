@@ -1,14 +1,24 @@
 html{
     font-family: 'Niramit', sans-serif;
+    background-color: #252526;
 }
 .btn{
     transition: .3s;
 }
+a[type=button]{
+    transition: .3s;
+}
 
-.btn:hover{
+a[type=button]:hover{
     background-color: #007ACC;
+    color: #F1F1F1;
     padding: .8em;
-    
+}
+.btn :hover{
+    background-color: #007ACC;
+    color: #F1F1F1;
+    padding: .8em;
+
 }
 .bg-background
 {
@@ -51,4 +61,14 @@ bg-image{
 
 .container li{
  margin-bottom: 1em;
+}
+
+#tori{
+    width: 10em;
+    border-radius: 7em;
+
+}
+
+.page-header {
+    margin-top: 5em;
 }
