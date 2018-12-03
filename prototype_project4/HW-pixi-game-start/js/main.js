@@ -4,13 +4,15 @@
 const app = new PIXI.Application(600,600);
 document.body.appendChild(app.view);
 
+app.renderer.backgroundColor = 0xFFFFFF;
+
 // constants
 const sceneWidth = app.view.width;
 const sceneHeight = app.view.height;	
 
 // pre-load the images
 PIXI.loader.
-add(["images/Spaceship.png","images/explosions.png"]).
+add(["images/Figure.png","images/Fedora.png", "images/tutorial.png"]).
 on("progress",e=>{console.log(`progress=${e.progress}`)}).
 load(setup);
 
@@ -19,18 +21,24 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene,ship,scoreLabel,lifeLabel,shootSound,hitSound,fireballSound, gameOverScoreLabel;
+let gameScene,player,scoreLabel,lifeLabel,shootSound,hitSound,fireballSound, gameOverScoreLabel;
 let gameOverScene;
 
-let circles = [];
-let bullets = [];
-let aliens = [];
-let explosions = [];
-let explosionTextures;
+let fedoras = [];
 let score = 0;
 let life = 100;
 let levelNum = 1;
 let paused = true;
+
+
+let gravity = -4;
+
+
+let leftKey = keyboard("ArrowLeft");
+let rightKey = keyboard("ArrowRight");
+let upKey = keyboard("ArrowUp");
+
+
 
 function createLabelsAndButtons(){
     let buttonStyle = new PIXI.TextStyle({
@@ -127,7 +135,7 @@ function increaseScoreBy(value){
 function decreaseLifeBy(value){
     life-= value;
     life = parseInt(life);
-    lifeLabel.text = `Life ${life}%`;
+    lifeLabel.text = `Lives: ${life}`;
 }
 
 function startGame(){
@@ -140,44 +148,23 @@ function startGame(){
     life = 5;
     increaseScoreBy(0);
     decreaseLifeBy(0);
-    ship.x = 300;
-    ship.y = 550;
+    player.x = 300;
     loadLevel();
 }
 
-function createCircles(numCircles){
-    for(let i = 0; i<numCircles; i++){
-        let c= new Circle(10, 0xFFFF00);
+function createFedoras(numOfHats){
+    for(let i = 0; i<numOfHats; i++){
+        let c= new Fedora();
         c.x = Math.random()*(sceneWidth - 50) + 25;
-        c.y = Math.random()*(sceneHeight - 400) + 25;
-        circles.push(c);
+        fedoras.push(c);
         gameScene.addChild(c);
     }
 }
 
-function fireBullet(e){
-    //let rect = app.view.getBoundingClientRect();
-    //let mouseX = e.clientX-rect.x;
-    //let mouseY = e.clientY -rect.y;
-    //console.log(`${mouseY}, ${mouseY}`);
-    
-    if (paused) return;
-    
-    if(score>5){
-    let b2 = new Bullet(0xFFFFFF, ship.x+7, ship.y);
-    bullets.push(b2);
-    gameScene.addChild(b2);
-        
-    let b3 = new Bullet(0xFFFFFF, ship.x-7, ship.y);
-    bullets.push(b3);
-    gameScene.addChild(b3);
-    }
-    
-    let b1 = new Bullet(0xFFFFFF, ship.x, ship.y);
-    bullets.push(b1);
-    gameScene.addChild(b1);
-    shootSound.play();
+function DropHats(time){
+
 }
+
 function loadSpriteSheet(){
     let spritesheet = PIXI.BaseTexture.fromImage("images/explosions.png");
     let width = 64;
@@ -205,6 +192,17 @@ function createExplosion(x,y,frameWidth, frameHeight){
     expl.play();
     
 }
+
+function jumpStart(){
+    player.vy = -12;
+    
+}
+
+function jumpEnd(){
+    player.vy = 0;
+    
+}
+
 function setup() {
 	stage = app.stage;
 	// #1 - Create the `start` scene
@@ -225,44 +223,72 @@ function setup() {
     createLabelsAndButtons();
 	
 	// #5 - Create ship
-	ship = new Ship();
-    gameScene.addChild(ship);
+	player = new Player();
+    player.vx = 0;
+    player.vy = 0;
+    gameScene.addChild(player);
+    
+    //Set up Keystrokes
+     //Left arrow key `press` method
+  leftKey.press = () => {
+    //Change the cat's velocity when the key is pressed
+    player.vx = -5;
+    player.vy = 0;
+  };
+  
+  //Left arrow key `release` method
+  leftKey.release = () => {
+    //If the left arrow has been released, and the right arrow isn't down,
+    //and the cat isn't moving vertically:
+    //Stop the cat
+    if (!rightKey.isDown) {
+      player.vx = 0;
+    }
+  };
+
+  //Up
+  upKey.press = () => {
+      if(player.y >= sceneHeight-100){
+          jumpStart();
+      }
+    
+  };
+  upKey.release = () => {
+      jumpEnd();
+  };
+
+  //Right
+  rightKey.press = () => {
+    player.vx = 5;
+    player.vy = 0;
+  };
+  rightKey.release = () => {
+    if (!leftKey.isDown) {
+      player.vx = 0;
+    }
+  };
+
+    let tutorial = new Tutorial();
+    startScene.addChild(tutorial);
     // #6 - Load Sounds
-    shootSound = new Howl({
-        src: ['sounds/shoot.wav']
-    });
 
-    hitSound = new Howl({
-        src: ['sounds/hit.mp3']
-    });
-
-    fireballSound = new Howl({
-        src: ['sounds/fireball.mp3']
-    });
 	// #7 - Load sprite sheet
-    explosionTextures = loadSpriteSheet();
+
 	// #8 - Start update loop
     app.ticker.add(gameLoop);
-	
-	// #9 - Start listening for click events on the canvas
-	app.view.onclick = fireBullet;
-	// Now our `startScene` is visible
-	// Clicking the button calls startGame()
 }
 
 function loadLevel(){
-	createCircles(levelNum * 5);
+	//createCircles(levelNum * 5);
+    createFedoras(levelNum * 5);
 	paused = false;
 }
 
 function end(){
     paused = true;
-    circles.forEach(c=> gameScene.removeChild(c));
-    circles = [];
+    //circles.forEach(c=> gameScene.removeChild(c));
+    //circles = [];
     
-    bullets.forEach(b=> gameScene.removeChild(b));
-    bullets = [];
-        
     explosions.forEach(e=> gameScene.removeChild(e));
     explosions = [];
     
@@ -278,20 +304,28 @@ function gameLoop(){
     let dt = 1/app.ticker.FPS;
     if (dt > 1/12) dt=1/12;
 	// #2 - Move Ship
-	let mousePosition = app.renderer.plugins.interaction.mouse.global;
+	/*let mousePosition = app.renderer.plugins.interaction.mouse.global;
     //ship.position = mousePosition;
 	let amt = 6*dt;
     
-    let newX = lerp(ship.x, mousePosition.x, amt);
-    let newY = lerp(ship.y, mousePosition.y, amt);
+    let newX = lerp(player.x, mousePosition.x, amt);
+    let newY = lerp(player.y, mousePosition.y, amt);
+    */
+    let w2 = player.width/2;
+    let h2 = player.height/2;
     
-    let w2 = ship.width/2;
-    let h2 = ship.height/2;
-    ship.x = clamp(newX, 0+w2, sceneWidth-w2);
-    ship.y = clamp(newY, 0+h2, sceneHeight-h2);
+    player.x += player.vx;
+    player.y += player.vy;
+
+    if(player.y < sceneHeight-100){
+        player.y-=gravity;
+    }
+    
+    player.x = clamp(player.x, 0+w2, sceneWidth-w2);
+    player.y = clamp(player.y, 0+h2, sceneHeight-h2);
     
 	// #3 - Move Circles
-	for (let c of circles){
+	/*for (let c of circles){
         c.move(dt);
         
         if (c.x <= c.radius || c.x >= sceneWidth-c.radius){
@@ -304,15 +338,18 @@ function gameLoop(){
             c.move(dt);
         
         }
+    }*/
+    
+    for(let h of fedoras){
+        if(h.isFalling){
+            h.move(dt);
+        }
     }
 	
 	// #4 - Move Bullets
-	for (let b of bullets){
-		b.move(dt);
-	}
 	
 	// #5 - Check for Collisions
-	for (let c of circles){
+	/*for (let c of circles){
         for(let b of bullets){
             if(rectsIntersect(c,b)){
                 fireballSound.play();
@@ -333,14 +370,13 @@ function gameLoop(){
             c.isAlive = false;
             decreaseLifeBy(1);
         }
-    }
+    }*/
 	
 	// #6 - Now do some clean up
-	bullets = bullets.filter(b=>b.isAlive);
     
-    circles = circles.filter(c => c.isAlive);
+    //circles = circles.filter(c => c.isAlive);
     
-    explosions = explosions.filter(e=>e.playing);
+    //explosions = explosions.filter(e=>e.playing);
 	
 	// #7 - Is game over?
 	if (life <= 0){
@@ -349,8 +385,8 @@ function gameLoop(){
     }
 	
 	// #8 - Load next level
-    if (circles.length == 0){
-	levelNum ++;
-	loadLevel();
-}
+    if (fedoras.length = 0){
+        levelNum ++;
+        loadLevel();
+    }
 }
