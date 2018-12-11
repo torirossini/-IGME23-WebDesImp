@@ -33,6 +33,10 @@ let paused = true;
 
 let gravity = -4;
 
+let timeSinceLastHat = 0;
+let hatsLeftToDrop = false;
+let currentHatIndex = 0;
+let dt = 1/app.ticker.FPS;
 
 let leftKey = keyboard("ArrowLeft");
 let rightKey = keyboard("ArrowRight");
@@ -156,15 +160,15 @@ function createFedoras(numOfHats){
     for(let i = 0; i<numOfHats; i++){
         let c= new Fedora();
         c.x = Math.random()*(sceneWidth - 50) + 25;
+        c.isFalling = false;
         fedoras.push(c);
         gameScene.addChild(c);
     }
 }
 
-function DropHats(time){
+function FallingHats(){
 
 }
-
 function loadSpriteSheet(){
     let spritesheet = PIXI.BaseTexture.fromImage("images/explosions.png");
     let width = 64;
@@ -297,11 +301,12 @@ function end(){
     gameOverScoreLabel.text = "Final Score: " + score;
     
 }
+
 function gameLoop(){
 	if (paused) return; // keep this commented out for now
 	
 	// #1 - Calculate "delta time"
-    let dt = 1/app.ticker.FPS;
+    
     if (dt > 1/12) dt=1/12;
 	// #2 - Move Ship
 	/*let mousePosition = app.renderer.plugins.interaction.mouse.global;
@@ -340,10 +345,9 @@ function gameLoop(){
         }
     }*/
     
-    for(let h of fedoras){
-        if(h.isFalling){
-            h.move(dt);
-        }
+    for(let f of fedoras)
+    {
+        f.y += gravity;
     }
 	
 	// #4 - Move Bullets

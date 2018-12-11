@@ -16,13 +16,7 @@ class Fedora extends PIXI.Sprite{
         this.x = x;
         this.y = y;
         
-        this.fwd = getRandomUnitVector();
-        this.speed = 50;
         this.isFalling = true;
-    }
-        move(dt=1/60){
-        this.x += this.fwd.x*this.speed*dt;
-        this.y += this.fwd.y*this.speed*dt;
     }
 }
     
