@@ -154,6 +154,8 @@ function startGame(){
     decreaseLifeBy(0);
     player.x = 300;
     loadLevel();
+    
+    console.log("There are " + fedoras.length + " in the array.")
 }
 
 function createFedoras(numOfHats){
@@ -161,14 +163,12 @@ function createFedoras(numOfHats){
         let c= new Fedora();
         c.x = Math.random()*(sceneWidth - 50) + 25;
         c.isFalling = false;
+        c.tint = 0xFFFFFF;
         fedoras.push(c);
         gameScene.addChild(c);
-    }
+    } 
 }
 
-function FallingHats(){
-
-}
 function loadSpriteSheet(){
     let spritesheet = PIXI.BaseTexture.fromImage("images/explosions.png");
     let width = 64;
@@ -212,11 +212,13 @@ function setup() {
 	// #1 - Create the `start` scene
     startScene =  new PIXI.Container();
     stage.addChild(startScene);
-	
+	createFedoras(levelNum * 5);
 	// #2 - Create the main `game` scene and make it invisible
     gameScene = new PIXI.Container();
     gameScene.visible = false;
     stage.addChild(gameScene)
+    
+    createFedoras(levelNum * 5);
 
 	// #3 - Create the `gameOver` scene and make it invisible
     gameOverScene = new PIXI.Container();
@@ -277,14 +279,15 @@ function setup() {
     // #6 - Load Sounds
 
 	// #7 - Load sprite sheet
-
+    
 	// #8 - Start update loop
     app.ticker.add(gameLoop);
 }
 
 function loadLevel(){
 	//createCircles(levelNum * 5);
-    createFedoras(levelNum * 5);
+    console.log("Loading Level..");
+    
 	paused = false;
 }
 
@@ -302,12 +305,36 @@ function end(){
     
 }
 
+function loopHats()
+{
+        for(let i = 0; i < currentHatIndex; i++)
+        {
+            console.log("changed");
+            fedoras[i].tint = 0xFF0000;
+        }
+}
 function gameLoop(){
+
 	if (paused) return; // keep this commented out for now
 	
 	// #1 - Calculate "delta time"
-    
     if (dt > 1/12) dt=1/12;
+    
+    timeSinceLastHat += dt;
+    if(timeSinceLastHat >= 2)
+        {
+            console.log("Number of hats in array: " + fedoras.length);
+            console.log("Lvl Num: " + levelNum);
+            timeSinceLastHat = 0;
+            if(currentHatIndex <= fedoras.length-1){
+                currentHatIndex++;
+                
+            }
+        }
+     
+    loopHats();
+
+    
 	// #2 - Move Ship
 	/*let mousePosition = app.renderer.plugins.interaction.mouse.global;
     //ship.position = mousePosition;
@@ -344,11 +371,6 @@ function gameLoop(){
         
         }
     }*/
-    
-    for(let f of fedoras)
-    {
-        f.y += gravity;
-    }
 	
 	// #4 - Move Bullets
 	
@@ -390,6 +412,7 @@ function gameLoop(){
 	
 	// #8 - Load next level
     if (fedoras.length = 0){
+        console.log("Level cleared");
         levelNum ++;
         loadLevel();
     }

@@ -5,6 +5,7 @@ class Player extends PIXI.Sprite{
         this.scale.set(0.3);
         this.x = x;
         this.y = y;
+        this.hitArea = new PIXI.Rectangle(0, 0, 100, 100);
     }
 }
 
@@ -15,6 +16,7 @@ class Fedora extends PIXI.Sprite{
         this.scale.set(0.3);
         this.x = x;
         this.y = y;
+        this.tint = 0xFFFFFF;
         
         this.isFalling = true;
     }
